@@ -1,0 +1,22 @@
+doctype 
+html
+	head
+		title YE Countdown - Client
+		link(rel="stylesheet",href="/static/bootstrap/dist/css/bootstrap.min.css")
+		style.
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+			body { background-color: black; color: white }
+			#countdown { font-size: 300px; }
+	body
+		.container(id="content")
+			.row
+				.col-xs-12(id="countdown")
+		script(src="/socket.io/socket.io.js")
+		script(src="/static/jquery/dist/jquery.min.js")
+		script(src="/static/moment/min/moment.min.js")
+		script(src="/static/bootstrap/dist/js/bootstrap.min.js")
+		script.
+			var socket = io()
+			socket.on('countdown', function(msg){
+				$('#countdown').text(moment(msg).format('mm:ss'))
+			})
