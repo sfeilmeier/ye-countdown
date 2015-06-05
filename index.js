@@ -28,9 +28,10 @@ io.on('connection', function(socket) {
 	socket.on('disconnect', function() {
 		console.log('device disconnected')
 	})
-	socket.on('resetCountdown', function() {
-		console.log('resetCountdown')
-		targetTime = moment().add(60, 'minutes')
+	socket.on('resetCountdown', function(minutes) {
+		if (typeof minutes === 'undefined') { minutes = 60; }
+		console.log('Reset countdown to ' + minutes + ' minutes')
+		targetTime = moment().add(minutes, 'minutes')
 	})
 })
 

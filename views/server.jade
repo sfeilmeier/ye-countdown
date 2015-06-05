@@ -11,6 +11,7 @@ html
 		.container(id="content")
 			.row
 				.col-xs-12
+					input(type="text",value="60",id="resetCountdownMinutes")
 					input(type="button",value="Reset Countdown",id="resetCountdown")
 			.row
 				.col-xs-12(id="countdown")
@@ -24,5 +25,6 @@ html
 				$('#countdown').text(moment(msg).format('mm:ss'))
 			})
 			$("#resetCountdown").click(function() {
-				socket.emit('resetCountdown')
+				var minutes = $("#resetCountdownMinutes").val()
+				socket.emit('resetCountdown', minutes)
 			})
